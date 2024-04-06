@@ -1,0 +1,47 @@
+<section id="contato" class="container" role="content">
+    <h2 id="contato">
+        <a class="anchor" href="#contato" aria-hidden="true"></a>
+        Contatos
+    </h2>
+
+    {% for centro_academico in site.informacoes_cas %}
+        <button class="colapsavel" style="background-color: #{{centro_academico.cor}};">
+            {{ centro_academico.nome }}
+        </button>
+        <div class="colapsavel-conteudo">
+            <table>
+                <colgroup>
+                    <col styl="width: 50%;">
+                    <col styl="width: 50%;">
+                </colgroup>
+                <tbody>
+                    {% for contato in centro_academico.contatos %}
+                    <tr>
+                        <td class="hdlist1">{{ contato.meio }}</td>
+                            {% case contato.meio %}
+                                {% when "E-mail" %}
+                                    <td><a href="mailto:{{contato.info}}" target="_blank">{{ contato.info }}</a></td>
+                                {% when "Site" %}
+                                    <td><a href="{{contato.info}}" target="_blank">{{ contato.info }}</a></td>
+                                {% when "Instagram" %}
+                                    <td><a href="https://instagram.com/{{contato.info}}" target="_blank">@{{ contato.info }}</a></td>
+                                {% when "Twitter" %}
+                                    <td><a href="https://twitter.com/{{contato.info}}" target="_blank">@{{ contato.info }}</a></td>
+                                {% when "Facebook" %}
+                                    <td><a href="https://www.fb.com/{{contato.info}}" target="_blank">{{ contato.info }}</a></td>
+                                {% when "Telegram" %}
+                                    <td><a href="https://t.me/{{contato.info}}" target="_blank">@{{ contato.info }}</a></td>
+                                {% when "GitHub" %}
+                                    <td><a href="https://github.com/{{contato.info}}" target="_blank">{{ contato.info }}</a></td>
+                                {% when "TikTok" %}
+                                    <td><a href="http://www.tiktok.com/@{{contato.info}}">@{{contato.info}}</a></td>
+                            {% endcase %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+    {% endfor %}
+
+</section>

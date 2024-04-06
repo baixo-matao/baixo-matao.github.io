@@ -1,0 +1,165 @@
+# Bem-vindo ao Jekyll!
+#
+# Este arquivo de configuracao eh destinado as configurações que afetam o blog
+# inteiro, valores os quais você vai definir uma vez e raramente vai mexer neles
+# depois. Se você ta mexendo demais nesse arquivo, reflita se não ta mexendo no
+# lugar errado.
+#
+# Por motivos tecnicos, esse arquivo *NAO* eh recarregado automaticamente quando
+# voce ta usando 'bundle exec jekyll serve'. Se voce mexer nesse arquivo, reinicie
+# o servidor local.
+#
+# Se precisar de ajuda com a sintaxe YAML, aqui tem umas referencias para voce:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Configuracoes do site
+# Essas sao usadas para personalizar o site. Se voce olhar nos arquivos HTML,
+# voce vai ver elas sendo acessadas via {{ site.title }}, {{ site.email }}, etc.
+# Voce pode criar qualquer variavel que quiser, e elas serao acessiveis da mesma
+# forma, bastando usar {{ site.nome_da_variavel }}
+
+title: Pentágono das Exatas
+email: camat@ime.usp.br
+description: >- # isso daqui serve pra considerar todo o conteudo ate 'baseurl'
+    Boletim do Baixo Matão, região da Universidade de São Paulo que compreende os
+    institutos de Matemática (IME), Física (IF), Astronomia e Geofísica (IAG),
+    Oceanografia (IO) e Geologia (IGc).
+baseurl: "" # o "sub-caminho" do site, tipo /blog
+url: "https://baixo-matao.github.io" # o link em producao do site
+# url: "http://localhost:4000" # o link em desenvolvimento do site. No meu fica assim, talvez no seu tenha uma porta diferente
+urlImagens: "https://baixo-matao.github.io/images"
+# urlImagens: "http://localhost:4000/images" # idem
+
+repository: camat-usp/camat-wiki
+
+# Para informacoes de contato dos CAs
+informacoes_cas:
+  - camat:
+    nome: CAMat (IME)
+    cor: ba3925
+    contatos:
+      - meio: E-mail
+        info: camat@ime.usp.br
+      - meio: Site
+        info: https://camat.ime.usp.br
+      - meio: Instagram
+        info: camat.usp
+      - meio: Twitter
+        info: camat_usp
+      - meio: Telegram
+        info: camat_usp
+      - meio: GitHub
+        info: camat-usp    
+  - cefisma:
+    nome: Cefisma (IF)
+    cor: 111
+    contatos:
+      - meio: E-mail
+        info: cefisma@cefisma.org.br
+      - meio: Site
+        info: https://cefisma.org.br
+      - meio: Instagram
+        info: cefisma
+      - meio: Twitter
+        info: CEFISMA
+      - meio: Telegram
+        info: cefisma
+      - meio: TikTok
+        info: cefismausp
+  - cepege:
+    nome: CEPEGE (IGc)
+    cor: 6D80FF
+    contatos:
+      - meio: E-mail
+        info: cepege@usp.br
+      - meio: Instagram
+        info: igc.cepege
+  - cap:
+    nome: CAP (IO)
+    cor: 648335
+    contatos:
+      - meio: E-mail
+        info: capanthalassa@usp.br
+      - meio: Instagram
+        info: capanthalssa
+  - caiag:
+    nome: CAIAG (IAG)
+    cor: C36F6E
+    contatos:
+      - meio: Instagram
+        info: ca_iag
+
+# para a paginacao do blog
+pagination:
+  # se quer usar ou nao o plugin
+  enabled: true
+  # qual colecao de arquivos eh a de posts
+  collection: posts
+  # quantos por pagina
+  per_page: 10
+  # Para definir o titulo do blog
+  title: ':title - Página :num'
+  # link permanente da pagina
+  permalink: '/pag:num/'
+  # por qual campo ordenar
+  sort_field: date
+  # ordenar ao contrario
+  sort_reverse: true
+  # categoria de posts
+  category: posts
+
+# Se tiver plugins, chama eles aqui embaixo
+plugins:
+  - jekyll-paginate-v2
+
+# Configuracoes do pre-processador AsciiDoc
+asciidoc: {}
+asciidoctor:
+  template_dir: _templates
+  base_dir: :docdir
+  safe: unsafe
+  attributes:
+    imagesdir: https://baixo-matao.github.io/images
+    # imagesdir: http://localhost:4000/images # desenvolvimento
+    icons: ""
+    iconsdir: '{imagesdir}/icons'
+    hide-uri-scheme: ""
+    note-title: NOTA
+    tip-title: DICA
+    important-title: IMPORTANTE
+    caution-title: AVISO
+    warning-title: AVISO
+    toc: macro
+    toc-title: Conteúdos
+    idseparator: _
+    source-highlighter: coderay
+
+# Excluidos do processamento.
+# Os seguintes itens não serao processados, por padrao.
+# Qualquer item listado abaixo de `exclude:` vai ser automaticamente
+# adicionado a "default list" interna.
+# 
+# Itens excluídos so podem ser processados pela listagem explicita dos
+# diretorios ou se forem listados na lista `include:`.
+# 
+# Eh tipo um `.gitignore`, so que pro Jekyll.
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - tmp/
+  - vendor/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - Rakefile
+  - TODO.adoc
+  - README.adoc
+  - LISCENSE.adoc
+  - LICENSE

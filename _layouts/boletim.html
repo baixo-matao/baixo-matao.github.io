@@ -1,0 +1,70 @@
+<!-- 
+ * Pentagono das Exatas!
+ * 
+ * Este eh o layout basico da pagina do boletim!
+-->
+
+<!doctype html>
+<html class="no-js" lang="pt-br" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+    {% include head.html %}
+    <meta property="og:type" content="website"/>
+
+    <!-- css do boletim -->
+    <link rel="stylesheet" href="{{ site.url }}/css/boletim.css">
+</head>
+<body>
+    {% include menu.html %}
+
+    <main class="wrapper">
+        
+        <div class="menu">
+            <div class="menu-hamburger"></div>
+        </div>
+
+        {% include header.html %}
+        
+        <section class="container">
+            <section class="container" style="fill: #8B7AA0;">
+                {% include logo.svg %}
+            </section>
+
+            <br>
+
+            <a href="#" target="_blank" class="boletim-escreva">
+                <div>
+                    <div>
+                        <img src="{{ site.urlImagens }}/boletim/escrevendo.png" alt="">
+                    </div>
+                    <div>
+                        Escreva para o boletim! <br> Clique aqui e veja como.
+                    </div>
+                </div>
+            </a>
+
+            {{ content }}
+            
+            <br>
+
+            <div class="boletim_edicoes">                
+                <div class="edicao_boletim" id="edicao_202401">
+                    <img src="{{ site.urlImagens }}/boletim/edicoes/202401_boletim_capa.png" alt="">
+                    <div class="edicao_boletim_titulo">
+                        <a href="{{ site.url }}/boletim/pdf/202401_OPenta_BoletimBM.pdf" target="_blank" id="edicao_202401_a">
+                        </a>
+                        Nº1 - Abril/2024
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+        {% include footer.html %}
+    </main>
+
+    <!-- JavaScript do boletim -->
+    <script src="{{ site.url }}/js/boletim.js"></script>
+
+    {% include js_pos.html %}
+</body>
+</html>

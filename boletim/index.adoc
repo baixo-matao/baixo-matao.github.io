@@ -1,0 +1,6 @@
+= Pentágono das Exatas
+:page-categories: section
+:showtitle:
+:page-layout: boletim
+
+Confira as edições anteriores do boletim!

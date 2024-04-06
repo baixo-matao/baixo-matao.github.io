@@ -1,0 +1,117 @@
+<!-- 
+ * Pentagono das Exatas!
+ * 
+ * Este eh o layout basico da pagina do boletim!
+-->
+
+<!doctype html>
+<html class="no-js" lang="pt-br" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+    {% include head.html %}
+    <meta property="og:type" content="website"/>
+
+    <!-- css do boletim -->
+    <link rel="stylesheet" href="{{ site.url }}/css/boletim.css">
+    <link rel="stylesheet" href="{{ site.url }}/css/boletim_post.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    {% assign estilos = page.estilo %}
+</head>
+<body>
+    {% include menu.html %}
+
+    <main class="wrapper">
+        
+        <div class="menu">
+          <div class="menu-hamburger"></div>
+        </div>
+
+        {% include header.html %}
+        
+        <div class="boletim-post-capa" style="background-image: url('{{ site.urlImagens }}/boletim/posts/{{ page.identificador }}/capa.jpg')">
+          <!-- <img src="{{ page.capa }}" alt="Capa do boletim"> -->
+          <div class="boletim-post-titulo">
+            <div class="container">
+              {{ page.title }}
+              <h2 class="subtitulo">{{ page.subtitle }}</h2>
+            </div>
+          </div>
+        </div>
+
+        <section class="container boletim-post-texto">
+          <div class="boletim-post-pos-cabecalho">
+            <div class="boletim-post-pos-cabecalho-tags">
+              {% for tag in page.tags %}
+                <div class="boletim-post-tag boletim-post-tag-{{ tag }}">
+                  {% if tag == "boletim" %}
+                    {{ tag }} {{ page.boletim }}
+                  {% else %}
+                    {{ tag }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            
+            <div class="boletim-post-cabecalho-info">
+              <div class="boletim-post-cabecalho-autor">
+                <i>Por <b>
+                  {% if page.autoria-completa %}
+                    {{ page.autoria-completa }}
+                  {% else %}
+                    {{ page.autoria }}
+                  {% endif %}
+                </b></i>
+              </div>
+              <div class="boletim-post-cabecalho-data">
+                <i class="fa-regular fa-calendar"></i> {{ page.data }}
+              </div>
+            </div>
+          </div>
+
+          {% if page.nao_indentar == 1%}
+            <div class="boletim-post-texto-conteudo nao-indentar">
+          {% else %}
+            <div class="boletim-post-texto-conteudo">
+          {% endif %}
+              {{ content }}  
+          </div>
+        </section>
+
+        <section class="container boletim-post-postexto">
+          <span>
+            Curtiu? Compartilha com a galera aí
+          </span>
+          <br>
+          <div class="boletim-post-compartilhar">
+            <a id="botao_whatsapp" class="boletim-post-botao-compartilhar" target="_blank" href="https://api.whatsapp.com/send?text={{site.url}}{{page.url}}" data-action="share/whatsapp/share">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a class="boletim-post-botao-compartilhar" target="_blank" href="https://t.me/share/url?url={{site.url}}{{page.url}}&text={{page.title}}">
+              <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a class="boletim-post-botao-compartilhar" target="_blank" href="https://www.facebook.com/sharer.php?u={{site.url}}{{page.url}}">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a class="boletim-post-botao-compartilhar" target="_blank" href="https://twitter.com/intent/tweet?url={{site.url}}{{page.url}}&text={{page.title}}">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a class="boletim-post-botao-compartilhar" onclick="print()">
+              <i class="fa-solid fa-print"></i>
+            </a>
+          </div>
+        </section>
+
+        <section class="container boletim-post-outros-posts">
+          {% include boletim_recomendacoes.html %}
+        </section>
+        
+        {% include footer.html %}
+    </main>
+
+    <!-- JavaScript do boletim -->
+    <script src="{{ site.url }}/js/boletim.js"></script>
+
+    {% include js_pos.html %}
+</body>
+</html>
