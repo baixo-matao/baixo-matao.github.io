@@ -7,31 +7,36 @@ on:
       - main
 
 jobs:
-  build_e_deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
+        with:
+          ruby-version: '3.1' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 0 # Increment this number if you need to re-download cached gems
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        # Outputs to the './_site' directory by default
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+      - name: Upload artifact
+        # Automatically uploads an artifact from the './_site' directory by default
+        uses: actions/upload-pages-artifact@v3
 
-      # Usa o cache do GitHub Actions para guardar as dependencias
-      - uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-            
-      # Usa o GitHub Deploy Action para fazer o build e o deploy ao GitHub
-      # Para usar a ultima versao: `jeffreytse/jekyll-deploy-action@master`
-      - uses: jeffreytse/jekyll-deploy-action@v0.5.0
-        with:
-          provider: 'github'         # O Padrao eh github
-          token: ${{ secrets.GITHUB_TOKEN }} # Eh o Personal Access Token (PAT)
-          branch: 'site'         # Branch onde sera feito o deploy
-          jekyll_src: './'           # Por padrao eh o diretorio raiz
-          jekyll_cfg: '_config.yml'  # Por padrao eh o _config.yml
-          jekyll_baseurl: ''         # O padrao eh o que esta no _config.yml
-          bundler_ver: '>=0'         # Por padrao eh a versao mais recente do bundler
-          cname: ''                  # O padrao eh nao usar um cname
-          actor: ''                  # O padrao eh GITHUB_ACTOR
-          pre_build_commands: ''     # Instalando dependencias adicionais (Arch Linux)
-      
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
