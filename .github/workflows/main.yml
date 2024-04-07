@@ -5,7 +5,13 @@ on:
     branches:
       # toda vez que tiver push na branch main ele vai rodar isso
       - main
-
+      
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
