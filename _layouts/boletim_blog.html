@@ -19,11 +19,13 @@
         </div>
         {% include header.html %}
         
-        <section id="introducao" class="container">
-            <section class="container" style="fill: #8B7AA0;">
+        <header id="home" class="header" role="banner">
+          <section class="container capa-logo" style="fill: #8B7AA0;">
               {% include logo.svg %}
-            </section>
-            <br>
+          </section>
+        </header>
+
+        <section id="introducao" class="container" style="padding-top: 0px !important;">
             <a href="{{ site.url }}/boletim " class="boletim-recomendacao-arquivo">
                 <div class="boletim-post-recomendacao-capa-arquivo" style="background-image: url('{{ site.urlImagens }}/boletim/edicoes/202404_boletim_capa.png')">
                     <div>
